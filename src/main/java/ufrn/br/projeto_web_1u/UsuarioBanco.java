@@ -1,9 +1,7 @@
 package ufrn.br.projeto_web_1u;
 
-
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class UsuarioBanco {
 

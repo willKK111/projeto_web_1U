@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class LoginController {
 
-    private UsuarioBanco usuarioBanco = new UsuarioBanco(); // Instancia o DAO
+    private UsuarioBanco usuarioBanco = new UsuarioBanco();
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public void getLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -58,7 +58,7 @@ public class LoginController {
             if (usuario != null) {
                 HttpSession session = request.getSession(true);
                 session.setAttribute("usuarioAutenticado", usuario);
-                session.setMaxInactiveInterval(1200); // Expira em 20 minutos
+                session.setMaxInactiveInterval(1200);
 
                 if (senha.equals("lojista123") || usuario.getEmail().equalsIgnoreCase("tanirocr@gmail.com") || usuario.getEmail().equalsIgnoreCase("lore_sil@yahoo.com.br")) {
                     response.sendRedirect("/lojistaHome");

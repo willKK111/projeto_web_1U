@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 @Controller
 public class CadastroController {
 
-    private UsuarioBanco usuarioBanco = new UsuarioBanco(); // instancia o "DAO"
+    private UsuarioBanco usuarioBanco = new UsuarioBanco();
 
     @RequestMapping(value = "/cadastro", method = RequestMethod.GET)
     public void getCadastro(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -40,7 +40,7 @@ public class CadastroController {
         writer.println("<input type='submit' value='Cadastrar'/>");
         writer.println("</form>");
 
-        // Botão para voltar para login
+
         writer.println("<br/><form action='/login' method='get'>");
         writer.println("<input type='submit' value='Voltar para Login'/>");
         writer.println("</form>");

@@ -49,4 +49,35 @@ public class ProdutoBanco {
 
         return produtos;
     }
+
+    public Produto getProdutoPorId(int id) {
+        for (Produto p : listarProdutos()) {
+            if (p.getId() == id) {
+                return p;
+            }
+        }
+        return null;
+    }
+
+    public void atualizarProduto(int produtoId) {
+        String sql = "UPDATE produto SET estoque = estoque - 1 WHERE id = ? AND estoque > 0";
+
+        try (Connection conn = ConectaBanco.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, produtoId);
+            int rowsUpdated = stmt.executeUpdate();  // Aqui a quantidade de linhas afetadas pela query
+
+            if (rowsUpdated == 0) {
+                // Isso significa que nenhum produto foi atualizado, ou seja, o estoque estava 0 ou não encontrado.
+                System.out.println("Produto com ID " + produtoId + " não foi atualizado, talvez estoque já seja 0.");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace(); // Ou log com SLF4J
+        }
+    }
+
+
+
 }
